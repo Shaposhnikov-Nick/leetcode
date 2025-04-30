@@ -1,6 +1,3 @@
-package ru.leetcode.solution_1_TwoSum
-
-
 fun main() {
     val nums = intArrayOf(2, 7, 11, 15)
     val target = 9
