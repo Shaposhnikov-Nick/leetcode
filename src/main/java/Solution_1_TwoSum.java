@@ -1,9 +1,7 @@
-package solution_1_TwoSum;
-
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class TwoSum {
+public class Solution_1_TwoSum {
     public static void main(String[] args) {
         var nums = new int[]{2, 7, 11, 15};
         var target = 9;
