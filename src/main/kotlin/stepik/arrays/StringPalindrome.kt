@@ -1,4 +1,4 @@
-package stepik
+package stepik.arrays
 
 fun main() {
     val s = readln()
