@@ -1,4 +1,4 @@
-package stepik
+package stepik.math
 
 fun main() {
     val n = readln().toLong()

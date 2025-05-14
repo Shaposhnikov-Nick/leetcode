@@ -1,4 +1,4 @@
-package stepik
+package stepik.math
 
 fun main() {
     val list = (0..10).map { fibonacci(it) }

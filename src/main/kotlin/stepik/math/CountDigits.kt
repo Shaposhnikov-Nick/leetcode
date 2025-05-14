@@ -1,4 +1,4 @@
-package stepik
+package stepik.math
 
 /**
  * Подсчет количества цифр в числе
