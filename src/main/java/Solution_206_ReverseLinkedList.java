@@ -39,7 +39,7 @@ public class Solution_206_ReverseLinkedList {
 }
 
 class ListNode2 {
-    final int val;
+    int val;
     ListNode2 next = null;
 
     public ListNode2(int val) {

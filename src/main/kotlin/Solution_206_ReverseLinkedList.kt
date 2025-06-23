@@ -62,6 +62,6 @@ fun reverseListRecursively(head: ListNode?): ListNode? {
 }
 
 
-class ListNode(val value: Int) {
+class ListNode(var `val`: Int) {
     var next: ListNode? = null
 }
