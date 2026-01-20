@@ -74,6 +74,6 @@ fun deleteNode(node: ListNode?) {
     // Since we don't have access to the previous node,
     // we copy the next node's value to current node
     // and then skip the next node
-    node?.`val` = node?.next?.`val`!!
-    node.next = node.next?.next
+    node?.`val` = node.next?.`val`!!
+    node?.next = node.next?.next
 }
