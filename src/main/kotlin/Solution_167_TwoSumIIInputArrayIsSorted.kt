@@ -54,6 +54,9 @@ fun twoSumII(numbers: IntArray, target: Int): IntArray {
     return intArrayOf()
 }
 
+/**
+ * Рекурсивный бинарный поиск
+ */
 fun binarySearch(numbers: IntArray, startIndex: Int, endIndex: Int, searchValue: Int): Int? {
     // если левый индекс обогнал правый - выход
     if (startIndex > endIndex) return null
@@ -76,4 +79,22 @@ fun binarySearch(numbers: IntArray, startIndex: Int, endIndex: Int, searchValue:
     else
     // если искомое значение больше значения середины, ищем в правом подмассиве
         binarySearch(numbers, midIndex + 1, endIndex, searchValue)
+}
+
+/**
+ * Итеративный бинарный поиск
+ */
+fun binarySearch2(numbers: IntArray, startIndex: Int, endIndex: Int, searchValue: Int): Int? {
+    var left = startIndex
+    var right = endIndex
+
+    while (left <= right) {
+        val mid = left + (right - left) / 2
+        when {
+            numbers[mid] == searchValue -> return mid
+            numbers[mid] < searchValue -> left = mid + 1
+            else -> right = mid - 1
+        }
+    }
+    return null
 }
