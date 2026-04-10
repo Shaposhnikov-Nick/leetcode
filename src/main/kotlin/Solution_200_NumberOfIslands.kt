@@ -44,10 +44,14 @@ fun main() {
         charArrayOf('1', '1', '0', '0', '0'),
         charArrayOf('0', '0', '0', '0', '0')
     )
-    numIslands(grid)
+    numIslandsDFS(grid)
+    numIslandsBSF(grid)
 }
 
-fun numIslands(grid: Array<CharArray>): Int {
+/**
+ *DFS  решение
+ */
+fun numIslandsDFS(grid: Array<CharArray>): Int {
     // количество островов
     var count = 0
 
@@ -86,4 +90,71 @@ fun dfs(grid: Array<CharArray>, rIndex: Int, cIndex: Int) {
     dfs(grid, rIndex - 1, cIndex)
     dfs(grid, rIndex, cIndex + 1)
     dfs(grid, rIndex, cIndex - 1)
+}
+
+/**
+ *BFS  решение
+ */
+fun numIslandsBSF(grid: Array<CharArray>): Int {
+    // количество островов
+    var islands = 0
+
+    // проходим по каждой клетке в матрице
+    // rIndex - индекс строки в матрице
+    // cIndex - индекс колонки в матрице
+    for (rIndex in grid.indices) {
+        for (cIndex in grid[rIndex].indices) {
+            val value = grid[rIndex][cIndex]
+            // если значение равно 1, значит нашли новый остров
+            if (value == '1') {
+                islands++
+                // проверяем соседние ячейки
+                bfs(grid, rIndex, cIndex)
+            }
+        }
+    }
+
+    return islands
+}
+
+/**
+ *
+ */
+fun bfs(grid: Array<CharArray>, rIndex: Int, cIndex: Int) {
+    // создаем очередь для хранения соседних полей со знчением 1
+    // и добавляем первое поле
+    val queue = ArrayDeque<Pair<Int, Int>>()
+    queue.addLast(rIndex to cIndex)
+
+    // сразу помечаем начальное поле как 0
+    // чтобы сюда повторно не заходили из других соседних полей
+    grid[rIndex][cIndex] = '0'
+
+    // проходим по всем полям в очереди, и если соседнее поле тоже 1, добавяем его в очередь
+    while (queue.isNotEmpty()) {
+        // достаем поле из очереди
+        val cell = queue.removeFirst()
+        // номер строки
+        val r = cell.first
+        // номер колонки
+        val c = cell.second
+
+        // определяем координаты граничных полей сверху, снизу, слева, спррава
+        val boundedCells = arrayOf(r - 1 to c, r + 1 to c, r to c - 1, r to c + 1)
+
+        // проходим по граничащим полям
+        for (cell in boundedCells) {
+            val r = cell.first
+            val c = cell.second
+            // проверяем, что координаты не выходят за границы матрицы
+            // и если значение поля равно 1 (т.е. земля), заменяем на 0 и добавляем поле в очередь,
+            // чтобы проверить грничащие с ним поля
+            if (r >= 0 && r < grid.size && c >= 0 && c < grid[r].size && grid[r][c] == '1') {
+                grid[r][c] = '0'
+                queue.addLast(r to c)
+            }
+        }
+
+    }
+
 }
